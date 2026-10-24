@@ -5,15 +5,22 @@ embed-resources: true
 
 ## Parcours
 
-Décrire brièvement le parcours ou les intérêts professionnels.
+J'ai complété 2 ans au baccalauréat en bio-informatique, puis j'ai décidé de changer de programme et faire un baccalauréat en statistique et science des données. J'ai eu l'opportunité de réaliser 2 stages en analyse de données lorsque j'étais en bio-informatique, et j'ai réalisé un stage en statistique à l'été 2026. 
+
 
 ## Compétences
 
 - R et tidyverse
+- Python 
+- SQL 
+- C++
 - Quarto
 - Git et GitHub
 - Visualisation de données
 
 ## Expériences ou formations
 
-Ajouter uniquement les éléments que vous acceptez de rendre publics.
+- Auxiliaire de recherche à l'IBIS (2023-2024)
+- Auxiliaire de recherche au Centre de recherche du CHU de Québec (été 2024)
+- Auxiliaire de recherche à CERVO (été 2025)
+- Auxiliaire de recherche à l'Université Laval (été 2026)

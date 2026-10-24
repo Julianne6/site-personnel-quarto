@@ -5,16 +5,16 @@ embed-resources: true
 
 ## Présentation
 
-Court paragraphe de présentation académique ou professionnelle.
+Je suis une étudiante en 3e année au baccalauréat en statistique et science des données, dans la concentration science des données.  
 
 ## Intérêts
 
+- Statistique
 - Science des données
-- Programmation R
+- Programmation R et Python
 - Visualisation
 
 ## Liens
 
-- GitHub: <https://github.com/identifiant>
+- GitHub: <https://github.com/Julianne6>
 - Site publié: <https://identifiant.github.io/nom-du-depot/>
-- Portfolio public ou trace publique, si autorisé: <lien>
