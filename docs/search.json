@@ -7,46 +7,95 @@
     "text": "Indiquer ici les usages significatifs de l’IA générative qui ont influencé le texte, la structure, le code ou le design du site.\nPour chaque usage significatif:\n\noutil utilisé;\ntâche demandée;\néléments conservés;\nvérifications effectuées;\nmodifications apportées.\n\nSi aucun usage significatif n’a influencé le site, écrire:\n\nAucun usage significatif de l’IA générative n’a influencé le site remis."
   },
   {
+    "objectID": "realisations/realisation-1.html",
+    "href": "realisations/realisation-1.html",
+    "title": "Mon rapport sur la profondeur des séismes",
+    "section": "",
+    "text": "La question est: comment les événements de ce tableau se répartissent-ils entre les profondeurs inférieures à 300 km et les profondeurs de 300 km ou plus?\nL’unité d’observation est les séismes. La variable est la profondeur en km.\nLe fichier importé contient rnrow(seismes)événements. Il est fourni avec le laboratoire; sa provenance et son dictionnaire sont dansdonnees/SOURCES.md`."
+  },
+  {
+    "objectID": "realisations/realisation-1.html#question-et-données",
+    "href": "realisations/realisation-1.html#question-et-données",
+    "title": "Mon rapport sur la profondeur des séismes",
+    "section": "",
+    "text": "La question est: comment les événements de ce tableau se répartissent-ils entre les profondeurs inférieures à 300 km et les profondeurs de 300 km ou plus?\nL’unité d’observation est les séismes. La variable est la profondeur en km.\nLe fichier importé contient rnrow(seismes)événements. Il est fourni avec le laboratoire; sa provenance et son dictionnaire sont dansdonnees/SOURCES.md`."
+  },
+  {
+    "objectID": "realisations/realisation-1.html#préparation",
+    "href": "realisations/realisation-1.html#préparation",
+    "title": "Mon rapport sur la profondeur des séismes",
+    "section": "Préparation",
+    "text": "Préparation\nLe jeu de données est séparé en 2 classes: les séismes avec une profondeur de moins de 300 km et les séismes de 300 km ou plus. Les contrôles vérifient que la somme des effectifs des classes est égale au nombre total de séismes. Ils vérifient également que la somme des proportions de chaque classe est égale à 1."
+  },
+  {
+    "objectID": "realisations/realisation-1.html#tableau",
+    "href": "realisations/realisation-1.html#tableau",
+    "title": "Mon rapport sur la profondeur des séismes",
+    "section": "Tableau",
+    "text": "Tableau\nLe tableau 1 montre les effectifs par classe de profondeur. Les séismes d’une profondeur de moins de 300km représentent ``\n\n\nAfficher le code\nkable(repartition_profondeur, digits = 1)\n\n\n\n\nTableau 1: Effectifs par classe de profondeur\n\n\n\n\n\n\nclasse_profondeur\neffectif\nproportion\n\n\n\n\nMoins de 300 km\n547\n0.5\n\n\n300 km ou plus\n453\n0.5"
+  },
+  {
+    "objectID": "realisations/realisation-1.html#figure",
+    "href": "realisations/realisation-1.html#figure",
+    "title": "Mon rapport sur la profondeur des séismes",
+    "section": "Figure",
+    "text": "Figure\nLa figure 1 représente les effectifs du tableau 1.\n\n\nAfficher le code\nggplot(repartition_profondeur, aes(\n  x = classe_profondeur, \n  y = effectif, \n  colour = classe_profondeur)) +\n  geom_col() +\n  labs(x = \"Classe de profondeur\", y = \"Nombre de séismes\", colour=\"classe de profondeur\") +\n  theme_minimal()\n\n\n\n\n\n\n\n\nFigure 1: Effectifs par classe de profondeur"
+  },
+  {
+    "objectID": "realisations/realisation-1.html#interprétation-et-limite",
+    "href": "realisations/realisation-1.html#interprétation-et-limite",
+    "title": "Mon rapport sur la profondeur des séismes",
+    "section": "Interprétation et limite",
+    "text": "Interprétation et limite\nLes séismes avec une profondeur de moins de 300 km représentent 54.7 % des séismes. Il n’est pas possible de calculer un nombre annuel de séismes avec ce fichier, car il ne contient pas les dates des séismes."
+  },
+  {
+    "objectID": "realisations/realisation-1.html#reproduction",
+    "href": "realisations/realisation-1.html#reproduction",
+    "title": "Mon rapport sur la profondeur des séismes",
+    "section": "Reproduction",
+    "text": "Reproduction\nPour refaire ce rapport, conserver le fichier .qmd et le dossier donnees/ ensemble. Les bibliothèques utilisées sont readr, dplyr, ggplot2 et knitr.\nquarto render rapport.qmd\nÀ compléter : indiquer la vérification réalisée depuis une session propre et depuis une copie du dossier. Pour vérifier que le rapport fonctionne, la session R a été redémarrée et le rendu a été refait. De plus, ce document et les données ont été copiées dans un autre répertoire, et le rendu a été refait. Dans les deux cas, le rapport HTML contenait tous les éléments."
+  },
+  {
     "objectID": "parcours.html",
     "href": "parcours.html",
     "title": "Parcours et compétences",
     "section": "",
-    "text": "Décrire brièvement le parcours ou les intérêts professionnels."
+    "text": "J’ai complété 2 ans au baccalauréat en bio-informatique, puis j’ai décidé de changer de programme et faire un baccalauréat en statistique et science des données. J’ai eu l’opportunité de réaliser 2 stages en analyse de données lorsque j’étais en bio-informatique, et j’ai réalisé un stage en statistique à l’été 2026."
   },
   {
     "objectID": "parcours.html#parcours",
     "href": "parcours.html#parcours",
     "title": "Parcours et compétences",
     "section": "",
-    "text": "Décrire brièvement le parcours ou les intérêts professionnels."
+    "text": "J’ai complété 2 ans au baccalauréat en bio-informatique, puis j’ai décidé de changer de programme et faire un baccalauréat en statistique et science des données. J’ai eu l’opportunité de réaliser 2 stages en analyse de données lorsque j’étais en bio-informatique, et j’ai réalisé un stage en statistique à l’été 2026."
   },
   {
     "objectID": "parcours.html#compétences",
     "href": "parcours.html#compétences",
     "title": "Parcours et compétences",
     "section": "Compétences",
-    "text": "Compétences\n\nR et tidyverse\nQuarto\nGit et GitHub\nVisualisation de données"
+    "text": "Compétences\n\nR et tidyverse\nPython\nSQL\nC++\nQuarto\nGit et GitHub\nVisualisation de données"
   },
   {
     "objectID": "parcours.html#expériences-ou-formations",
     "href": "parcours.html#expériences-ou-formations",
     "title": "Parcours et compétences",
     "section": "Expériences ou formations",
-    "text": "Expériences ou formations\nAjouter uniquement les éléments que vous acceptez de rendre publics."
+    "text": "Expériences ou formations\n\nAuxiliaire de recherche à l’IBIS (2023-2024)\nAuxiliaire de recherche au Centre de recherche du CHU de Québec (été 2024)\nAuxiliaire de recherche à CERVO (été 2025)\nAuxiliaire de recherche à l’Université Laval (été 2026)"
   },
   {
     "objectID": "realisations.html",
     "href": "realisations.html",
     "title": "Réalisations",
     "section": "",
-    "text": "Contexte:\nProduction:\nOutils:\nValidation ou vérification:\nCe que cette réalisation démontre:\nLimite ou amélioration possible:\nTrace source dans le portfolio:\nLien public, seulement si autorisé:"
+    "text": "Contexte: décrire la répartition des profondeurs des séismes dans le jeu quakes fourni avec R, utilisé pendant la semaine 7.\nProduction: un rapport avec tableau, graphique et code.\nOutils: R, readr, dplyr, ggplot2 et Quarto.\nValidation ou vérification: La somme des effectifs du tableau correspond au nombre de lignes. La somme des 2 proportions est 1.\nCe que cette réalisation démontre: la production d’un rapport reproductible, incluant l’importation des données, le calcul de proportion et la visualisation d’un graphique.\nLimite ou amélioration possible: Il n’est pas possible de calculer un nombre annuel de séismes avec ce fichier, car il ne contient pas les dates des séismes.\nTrace source dans le portfolio: La trace utilisée correspond à l’exercice 3 de la semaine 7. Puisque le portfolio est privé, voici une reproduction de la trace originale."
   },
   {
     "objectID": "realisations.html#réalisation-1-trace-du-portfolio",
     "href": "realisations.html#réalisation-1-trace-du-portfolio",
     "title": "Réalisations",
     "section": "",
-    "text": "Contexte:\nProduction:\nOutils:\nValidation ou vérification:\nCe que cette réalisation démontre:\nLimite ou amélioration possible:\nTrace source dans le portfolio:\nLien public, seulement si autorisé:"
+    "text": "Contexte: décrire la répartition des profondeurs des séismes dans le jeu quakes fourni avec R, utilisé pendant la semaine 7.\nProduction: un rapport avec tableau, graphique et code.\nOutils: R, readr, dplyr, ggplot2 et Quarto.\nValidation ou vérification: La somme des effectifs du tableau correspond au nombre de lignes. La somme des 2 proportions est 1.\nCe que cette réalisation démontre: la production d’un rapport reproductible, incluant l’importation des données, le calcul de proportion et la visualisation d’un graphique.\nLimite ou amélioration possible: Il n’est pas possible de calculer un nombre annuel de séismes avec ce fichier, car il ne contient pas les dates des séismes.\nTrace source dans le portfolio: La trace utilisée correspond à l’exercice 3 de la semaine 7. Puisque le portfolio est privé, voici une reproduction de la trace originale."
   },
   {
     "objectID": "realisations.html#réalisation-2-projet-ou-module-avancé",
@@ -60,34 +109,41 @@
     "href": "realisations.html#justification-technique-courte",
     "title": "Réalisations",
     "section": "Justification technique courte",
-    "text": "Justification technique courte\nExpliquer un choix technique important: structure du dépôt, validation, dépendances, rendu Quarto, visualisation, fonction, test ou publication GitHub Pages.\nPour STT-6230, ajouter une dimension plus avancée: comparaison d’approches, validation supplémentaire, analyse de performance, limite méthodologique ou justification d’architecture."
+    "text": "Justification technique courte\nExpliquer un choix technique important: structure du dépôt, validation, dépendances, rendu Quarto, visualisation, fonction, test ou publication GitHub Pages."
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Julianne Fréchette",
     "section": "",
-    "text": "Court paragraphe de présentation académique ou professionnelle."
+    "text": "Je suis une étudiante en 3e année au baccalauréat en statistique et science des données, dans la concentration science des données."
   },
   {
     "objectID": "index.html#présentation",
     "href": "index.html#présentation",
     "title": "Julianne Fréchette",
     "section": "",
-    "text": "Court paragraphe de présentation académique ou professionnelle."
+    "text": "Je suis une étudiante en 3e année au baccalauréat en statistique et science des données, dans la concentration science des données."
   },
   {
     "objectID": "index.html#intérêts",
     "href": "index.html#intérêts",
     "title": "Julianne Fréchette",
     "section": "Intérêts",
-    "text": "Intérêts\n\nScience des données\nProgrammation R\nVisualisation"
+    "text": "Intérêts\n\nStatistique\nScience des données\nProgrammation R et Python\nVisualisation"
   },
   {
     "objectID": "index.html#liens",
     "href": "index.html#liens",
     "title": "Julianne Fréchette",
     "section": "Liens",
-    "text": "Liens\n\nGitHub: https://github.com/identifiant\nSite publié: https://identifiant.github.io/nom-du-depot/\nPortfolio public ou trace publique, si autorisé:"
+    "text": "Liens\n\nGitHub: https://github.com/Julianne6\nSite publié: https://identifiant.github.io/nom-du-depot/"
+  },
+  {
+    "objectID": "realisations/data/SOURCES.html",
+    "href": "realisations/data/SOURCES.html",
+    "title": "Séismes près de Fidji",
+    "section": "",
+    "text": "Séismes près de Fidji\nFichier : seismes-fidji.csv.\nSource immédiate : datasets::quakes, distribué avec R 4.5.0, exporté le 13 octobre 2026 avec readr::write_csv(). Les 1 000 lignes et les cinq variables sont conservées sans modification. Une lecture du CSV a été comparée au tableau original.\nLa documentation de R Core Team, consultée le 13 octobre 2026, attribue les données au projet Harvard PRIM-H, qui les avait obtenues de John Woodhouse, Department of Geophysics, Harvard University. Elle situe les événements près de Fidji depuis 1964 et présente ce tableau comme un sous-échantillon d’un ensemble de 5 000 observations.\n\n\n\nVariable\nDéfinition\n\n\n\n\nlat\nLatitude de l’événement\n\n\nlong\nLongitude de l’événement\n\n\ndepth\nProfondeur, en kilomètres\n\n\nmag\nMagnitude\n\n\nstations\nNombre de stations ayant rapporté l’événement\n\n\n\nUne ligne représente un séisme. Le tableau ne fournit pas les dates individuelles, une durée précise de suivi ou une mesure de l’effort de détection. Son utilisation dans les supports est descriptive. Les deux classes de profondeur du laboratoire utilisent un seuil de 300 km choisi pour l’exercice. Ce seuil ne constitue pas une classification du risque sismique.\nPour recréer la copie depuis R :\nlibrary(readr)\n\ndir.create(\"donnees\", showWarnings = FALSE)\nwrite_csv(datasets::quakes, \"donnees/seismes-fidji.csv\")"
   }
 ]

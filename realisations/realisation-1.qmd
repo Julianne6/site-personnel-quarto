@@ -1,0 +1,122 @@
+---
+title: "Mon rapport sur la profondeur des séismes"
+author: "Julianne Fréchette, IDUL: JUFRE48"
+lang: fr
+embed-resources: true
+format:
+  html:
+    theme: cosmo
+    toc: true
+    code-fold: true
+    code-summary: "Afficher le code"
+crossref:
+  tbl-title: "Tableau"
+  tbl-prefix: "tableau"
+  fig-title: "Figure"
+  fig-prefix: "figure"
+execute:
+  echo: true
+  message: false
+  warning: true
+  error: false
+  cache: false
+---
+
+```{r}
+#| label: preparation
+#| include: false
+
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(knitr)
+
+# Conserver le fichier .qmd et le dossier donnees/ ensemble.
+seismes <- read_csv("data/seismes-fidji.csv", show_col_types = FALSE)
+
+# Ces contrôles portent sur la variable utilisée dans le laboratoire.
+stopifnot(
+  "depth" %in% names(seismes),
+  is.numeric(seismes$depth),
+  nrow(seismes) > 0L,
+  !anyNA(seismes$depth)
+)
+
+# Ajouter ici vos calculs de classes, d'effectifs et de proportions.
+seismes_classes <- seismes |> 
+  mutate(classe_profondeur = factor(
+    if_else(depth < 300, "Moins de 300 km", "300 km ou plus"), 
+    levels = c("Moins de 300 km", "300 km ou plus")
+         ))
+
+repartition_profondeur <- seismes_classes |>
+  count(classe_profondeur, name = "effectif", .drop = FALSE) |> 
+  mutate(proportion = effectif / sum(effectif))
+
+stopifnot(sum(repartition_profondeur$effectif) == nrow(seismes))
+stopifnot(sum(repartition_profondeur$proportion) == 1)
+
+```
+
+## Question et données
+
+La question est: comment les événements de ce tableau se répartissent-ils entre les profondeurs inférieures à 300 km et les profondeurs de 300 km ou plus?
+
+L'unité d'observation est les séismes. La variable est la profondeur en km. 
+
+
+Le fichier importé contient `r `nrow(seismes)` événements. Il est fourni avec le laboratoire; sa provenance et son dictionnaire sont dans `donnees/SOURCES.md`.
+
+## Préparation
+
+Le jeu de données est séparé en 2 classes: les séismes avec une profondeur de moins de 300 km et les séismes de 300 km ou plus. Les contrôles vérifient que la somme des effectifs des classes est égale au nombre total de séismes. Ils vérifient également que la somme des proportions de chaque classe est égale à 1. 
+
+## Tableau
+
+Le @tbl-repartition montre les effectifs par classe de profondeur. Les séismes d'une profondeur de moins de 300km représentent ``
+
+```{r}
+#| label: tbl-repartition
+#| tbl-cap: "Effectifs par classe de profondeur"
+
+kable(repartition_profondeur, digits = 1)
+```
+
+## Figure
+
+La @fig-repartition représente les effectifs du @tbl-repartition.
+
+```{r}
+#| label: fig-repartition
+#| fig-cap: "Effectifs par classe de profondeur"
+#| fig-alt: "Barres des 2 classes; Les séismes d'une profondeur de moins de 300 km sont plus fréquents."
+#| fig-width: 8
+#| fig-height: 4.5
+
+ggplot(repartition_profondeur, aes(
+  x = classe_profondeur, 
+  y = effectif, 
+  colour = classe_profondeur)) +
+  geom_col() +
+  labs(x = "Classe de profondeur", y = "Nombre de séismes", colour="classe de profondeur") +
+  theme_minimal()
+
+```
+
+
+## Interprétation et limite
+
+Les séismes avec une profondeur de moins de 300 km représentent `r repartition_profondeur$proportion[repartition_profondeur$classe_profondeur == "Moins de 300 km"] * 100` % des séismes. Il n'est pas possible de calculer un nombre annuel de séismes avec ce fichier, car il ne contient pas les dates des séismes.
+
+## Reproduction
+
+Pour refaire ce rapport, conserver le fichier `.qmd` et le dossier `donnees/` ensemble. Les bibliothèques utilisées sont `readr`, `dplyr`, `ggplot2` et `knitr`.
+
+```text
+quarto render rapport.qmd
+```
+
+À compléter : indiquer la vérification réalisée depuis une session propre et depuis une copie du dossier.
+Pour vérifier que le rapport fonctionne, la session R a été redémarrée et le 
+rendu a été refait. De plus, ce document et les données ont été copiées dans un autre répertoire, et le rendu a été refait. Dans les deux cas, le rapport HTML 
+contenait tous les éléments. 

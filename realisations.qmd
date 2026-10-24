@@ -5,21 +5,19 @@ embed-resources: true
 
 ## Réalisation 1: trace du portfolio
 
-Contexte:
+Contexte: décrire la répartition des profondeurs des séismes dans le jeu `quakes` fourni avec R, utilisé pendant la semaine 7.
 
-Production:
+Production: [un rapport avec tableau, graphique et code](realisations/realisation-1.html).
 
-Outils:
+Outils: R, readr, dplyr, ggplot2 et Quarto.
 
-Validation ou vérification:
+Validation ou vérification: La somme des effectifs du tableau correspond au nombre de lignes. La somme des 2 proportions est 1. 
 
-Ce que cette réalisation démontre:
+Ce que cette réalisation démontre: la production d'un rapport reproductible, incluant l'importation des données, le calcul de proportion et la visualisation d'un graphique. 
 
-Limite ou amélioration possible:
+Limite ou amélioration possible: Il n'est pas possible de calculer un nombre annuel de séismes avec ce fichier, car il ne contient pas les dates des séismes.
 
-Trace source dans le portfolio:
-
-Lien public, seulement si autorisé:
+Trace source dans le portfolio: La trace utilisée correspond à l'exercice 3 de la semaine 7. Puisque le portfolio est privé, voici une [reproduction de la trace originale](). 
 
 ## Réalisation 2: projet ou module avancé
 
@@ -43,4 +41,3 @@ Lien public, seulement si autorisé:
 
 Expliquer un choix technique important: structure du dépôt, validation, dépendances, rendu Quarto, visualisation, fonction, test ou publication GitHub Pages.
 
-Pour STT-6230, ajouter une dimension plus avancée: comparaison d’approches, validation supplémentaire, analyse de performance, limite méthodologique ou justification d’architecture.
