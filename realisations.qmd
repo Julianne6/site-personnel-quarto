@@ -17,7 +17,7 @@ Ce que cette réalisation démontre: la production d'un rapport reproductible, i
 
 Limite ou amélioration possible: Il n'est pas possible de calculer un nombre annuel de séismes avec ce fichier, car il ne contient pas les dates des séismes.
 
-Trace source dans le portfolio: La trace utilisée correspond à l'exercice 3 de la semaine 7. Puisque le portfolio est privé, voici une [reproduction de la trace originale](). 
+Trace source dans le portfolio: La trace utilisée correspond à l'exercice 3 de la semaine 7. Puisque le portfolio est privé, voici une [reproduction de la trace originale](https://github.com/Julianne6/site-personnel-quarto/blob/main/realisations/realisation-1.qmd). 
 
 ## Réalisation 2: projet ou module avancé
 
