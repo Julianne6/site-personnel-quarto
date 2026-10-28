@@ -49,13 +49,13 @@ colnames(taux_cancer) <- c("annee", seq(1,16))
 
 ## Tableau (format large)
 
-Le @tbl-taux montre les taux d'incidence de cancer (/100 000).
+Le @tbl-taux montre les taux d'incidence de cancer (/100 000) de 2015 à 2024.
 
 ```{r}
 #| label: tbl-taux
 #| tbl-cap: "Taux de cancer par année et par région"
 
-kable(taux_cancer, digits = 2)
+kable(taux_cancer, digits = 1)
 ```
 
 
@@ -73,19 +73,20 @@ taux_long <- taux_cancer %>%
   ) %>% 
   mutate(
     taux = as.numeric(gsub(",", ".", taux))
-  )
+  ) %>%
+  subset(region %in% c("1", "2", "3", "4", "5")) 
 
 ```
 
 ## Tableau (format long)
 
-Le @tbl-long montre les taux d'incidence de cancer (/100 000) sous format long.
+Le @tbl-long montre les taux d'incidence de cancer (/100 000) sous format long pour les régions 1 à 5.
 
 ```{r}
 #| label: tbl-long
-#| tbl-cap: "Taux de cancer sous format long"
+#| tbl-cap: "Taux de cancer sous format long pour les régions 1 à 5"
 
-kable(taux_long, digits = 2)
+kable(taux_long, digits = 1)
 ```
 
 
@@ -106,12 +107,11 @@ La @fig-cancer représente les effectifs du @tbl-long pour 5 régions administra
 ```{r}
 #| label: fig-cancer
 #| fig-cap: "Taux d'incidence de cancer (/100 000)"
-#| fig-alt: "."
+#| fig-alt: "Évolution du taux d'incidence de cancer (/100 000) de 2015 à 2024 pour 5 régions administratives."
 #| fig-width: 8
 #| fig-height: 4.5
 
 taux_long %>% 
-  subset(region %in% c("1", "2", "3", "4", "5")) %>% 
   mutate(
     region = factor(
       region,
