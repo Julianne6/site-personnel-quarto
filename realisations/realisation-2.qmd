@@ -1,0 +1,133 @@
+---
+title: "Réalisation 2 provenant du projet"
+lang: fr
+embed-resources: true
+format:
+  html:
+    theme: cosmo
+    toc: true
+    code-fold: true
+    code-summary: "Afficher le code"
+crossref:
+  tbl-title: "Tableau"
+  tbl-prefix: "tableau"
+  fig-title: "Figure"
+  fig-prefix: "figure"
+execute:
+  echo: true
+  message: false
+  warning: false
+  error: false
+  cache: false
+---
+```{r}
+# Importation des packages 
+library(readr)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(knitr)
+
+# Importation des données de cancer
+filenames <- list.files("data", include.dirs = FALSE, recursive = TRUE, pattern = "region.*.csv")
+data_list <- lapply(file.path("data", filenames), read.csv)
+
+# Jointure des données
+taux_cancer <- data.frame(
+  annee = seq(2015, 2024)
+)
+for (csv in data_list){
+  taux_cancer <- left_join(
+    taux_cancer, 
+    select(csv, -3) , 
+    by = c("annee" = "Année"))
+}
+
+colnames(taux_cancer) <- c("annee", seq(1,16))
+
+```
+
+## Tableau (format large)
+
+Le @tbl-taux montre les taux d'incidence de cancer (/100 000).
+
+```{r}
+#| label: tbl-taux
+#| tbl-cap: "Taux de cancer par année et par région"
+
+kable(taux_cancer, digits = 2)
+```
+
+
+
+```{r}
+# Écriture du csv
+write_csv(taux_cancer, "data/donnees_completes.csv")
+
+# Mise en forme longue
+taux_long <- taux_cancer %>%
+  pivot_longer(
+    cols = as.character(seq(1, 16)), 
+    names_to = "region", 
+    values_to = "taux"
+  ) %>% 
+  mutate(
+    taux = as.numeric(gsub(",", ".", taux))
+  )
+
+```
+
+## Tableau (format long)
+
+Le @tbl-long montre les taux d'incidence de cancer (/100 000) sous format long.
+
+```{r}
+#| label: tbl-long
+#| tbl-cap: "Taux de cancer sous format long"
+
+kable(taux_long, digits = 2)
+```
+
+
+```{r}
+# Contrôles
+stopifnot(taux_long$taux <= 100000 | is.na(taux_long$taux))
+stopifnot(nrow(distinct(taux_long, annee, region)) == nrow(taux_long))
+
+
+# Visualisation 
+
+```
+
+## Figure
+
+La @fig-cancer représente les effectifs du @tbl-long pour 5 régions administratives
+
+```{r}
+#| label: fig-cancer
+#| fig-cap: "Taux d'incidence de cancer (/100 000)"
+#| fig-alt: "."
+#| fig-width: 8
+#| fig-height: 4.5
+
+taux_long %>% 
+  subset(region %in% c("1", "2", "3", "4", "5")) %>% 
+  mutate(
+    region = factor(
+      region,
+      levels = c("1", "2", "3", "4", "5"),
+      labels = c("Bas-Saint-Laurent", "Saguenay-Lac-Saint-Jean", 
+                 "Capitale-Nationale", "Mauricie et Centre-du-Québec", "Estrie")
+    )
+  ) %>%
+  ggplot( aes(x=annee, y=taux, group=region, color=region)) +
+  geom_line() + 
+  scale_x_discrete(limits = seq(2015, 2024, 2)) +
+  labs(
+    title = "Taux d'incidence du cancer de 2015 à 2024",
+    x = "Année", 
+    y = "Taux d'incidence (/100 000)",
+    colour = "Région"
+  )
+
+```
