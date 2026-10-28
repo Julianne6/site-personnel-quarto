@@ -5,7 +5,7 @@ embed-resources: true
 
 ## Réalisation 1: trace du portfolio
 
-Contexte: décrire la répartition des profondeurs des séismes dans le jeu `quakes` fourni avec R, utilisé pendant la semaine 7.
+Contexte: Le but de cette trace était de décrire la répartition des profondeurs des séismes dans le jeu `quakes` fourni avec R, utilisé pendant la semaine 7.
 
 Production: [un rapport avec tableau, graphique et code](realisations/realisation-1.html).
 
@@ -21,21 +21,19 @@ Trace source dans le portfolio: La trace utilisée correspond à l'exercice 3 de
 
 ## Réalisation 2: projet ou module avancé
 
-Contexte:
+Contexte: L'objectif de cette partie du projet était de voir l'évolution temporelle des taux d'incidence du cancer dans les régions administratives. 
 
-Production:
+Production:[un rapport avec tableau, graphique et code](realisations/realisation-2.html).
 
-Outils:
+Outils: R, readr, dplyr, ggplot2 et Quarto.
 
-Validation ou vérification:
+Validation ou vérification: Les taux d'incidence ne dépassent pas 100 000. Chaque paire (année, région) a un taux unique. 
 
-Ce que cette réalisation démontre:
+Ce que cette réalisation démontre: la production d'un rapport reproductible, incluant l'importation des données, une boucle, une jointure, un changement de mise en forme et la visualisation d'un graphique. 
 
-Limite ou amélioration possible:
+Limite ou amélioration possible: On visualise seulement 5 régions administratives, car les 17 régions administratives rendent le graphique chargé et difficile à interpréter.
 
-Trace source dans le projet ou le module:
-
-Lien public, seulement si autorisé:
+Trace source dans le projet ou le module: Puisque le dépôt du projet est privé, voici une [reproduction de la trace originale](https://github.com/Julianne6/site-personnel-quarto/blob/main/realisations/realisation-2.qmd). 
 
 ## Justification technique courte
 
