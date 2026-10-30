@@ -21,7 +21,7 @@ Trace source dans le portfolio: La trace utilisée correspond à l'exercice 3 de
 
 ## Réalisation 2: projet ou module avancé
 
-Contexte: L'objectif de cette partie du projet était de voir l'évolution temporelle des taux d'incidence du cancer dans les régions administratives. 
+Contexte: L'objectif de cette partie du projet était de voir l'évolution temporelle des taux d'incidence du cancer du poumon dans les régions administratives du Québec. 
 
 Production: [un rapport avec tableau, graphique et code](realisations/realisation-2.html)
 
@@ -31,12 +31,11 @@ Validation ou vérification: Les taux d'incidence ne dépassent pas 100 000. Cha
 
 Ce que cette réalisation démontre: un script R incluant l'importation des données, une boucle, une jointure, un changement de mise en forme et la visualisation d'un graphique. 
 
-Limite ou amélioration possible: On visualise seulement 5 régions administratives, car les 17 régions administratives rendent le graphique chargé et difficile à interpréter.
+Limite ou amélioration possible: Les données incluent uniquement les régions administratives du Québec. Il serait pertinent d'ajouter les autres provinces du Canada et de stratifier par groupe d'âge.
 
 Trace source dans le projet ou le module: Puisque le dépôt du projet est privé, voici une [reproduction de la trace originale](https://github.com/Julianne6/site-personnel-quarto/blob/main/realisations/realisation-2.qmd). 
 
-
 ## Justification technique courte
 
-Expliquer un choix technique important: structure du dépôt, validation, dépendances, rendu Quarto, visualisation, fonction, test ou publication GitHub Pages.
+On visualise seulement 5 régions administratives, car les 17 régions administratives rendent le graphique chargé et difficile à interpréter.
 

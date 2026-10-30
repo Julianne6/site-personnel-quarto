@@ -28,6 +28,7 @@ library(tidyr)
 library(ggplot2)
 library(knitr)
 
+
 # Importation des données de cancer
 filenames <- list.files("data", include.dirs = FALSE, recursive = TRUE, pattern = "region.*.csv")
 data_list <- lapply(file.path("data", filenames), read.csv)
@@ -84,7 +85,7 @@ Le @tbl-long montre les taux d'incidence de cancer (/100 000) sous format long p
 
 ```{r}
 #| label: tbl-long
-#| tbl-cap: "Taux de cancer sous format long pour les régions 1 à 5"
+#| tbl-cap: "Taux de cancer du poumon sous format long pour 5 régions"
 
 kable(taux_long, digits = 1)
 ```
@@ -107,7 +108,7 @@ La @fig-cancer représente les effectifs du @tbl-long pour 5 régions administra
 ```{r}
 #| label: fig-cancer
 #| fig-cap: "Taux d'incidence de cancer (/100 000)"
-#| fig-alt: "Évolution du taux d'incidence de cancer (/100 000) de 2015 à 2024 pour 5 régions administratives."
+#| fig-alt: "Évolution du taux d'incidence de cancer du poumon (/100 000) de 2015 à 2024 pour 5 régions administratives."
 #| fig-width: 8
 #| fig-height: 4.5
 
@@ -124,7 +125,7 @@ taux_long %>%
   geom_line() + 
   scale_x_discrete(limits = seq(2015, 2024, 2)) +
   labs(
-    title = "Taux d'incidence du cancer de 2015 à 2024",
+    title = "Taux d'incidence du cancer du poumon de 2015 à 2024",
     x = "Année", 
     y = "Taux d'incidence (/100 000)",
     colour = "Région"
