@@ -4,21 +4,133 @@
     "href": "declaration-ia.html",
     "title": "Déclaration IA",
     "section": "",
-    "text": "Indiquer ici les usages significatifs de l’IA générative qui ont influencé le texte, la structure, le code ou le design du site.\nPour chaque usage significatif:\n\noutil utilisé;\ntâche demandée;\néléments conservés;\nvérifications effectuées;\nmodifications apportées.\n\nSi aucun usage significatif n’a influencé le site, écrire:\n\nAucun usage significatif de l’IA générative n’a influencé le site remis."
+    "text": "Aucun usage significatif de l’IA générative n’a influencé le site remis."
+  },
+  {
+    "objectID": "realisations/realisation-2.html",
+    "href": "realisations/realisation-2.html",
+    "title": "Réalisation 2 provenant du projet",
+    "section": "",
+    "text": "Afficher le code\n# Importation des packages \nlibrary(readr)\nlibrary(dplyr)\nlibrary(tidyr)\nlibrary(ggplot2)\nlibrary(knitr)\n\n\n# Importation des données de cancer\nfilenames &lt;- list.files(\"data\", include.dirs = FALSE, recursive = TRUE, pattern = \"region.*.csv\")\ndata_list &lt;- lapply(file.path(\"data\", filenames), read.csv)\n\n# Jointure des données\ntaux_cancer &lt;- data.frame(\n  annee = seq(2015, 2024)\n)\nfor (csv in data_list){\n  taux_cancer &lt;- left_join(\n    taux_cancer, \n    select(csv, -3) , \n    by = c(\"annee\" = \"Année\"))\n}\n\ncolnames(taux_cancer) &lt;- c(\"annee\", seq(1,16))"
+  },
+  {
+    "objectID": "realisations/realisation-2.html#tableau-format-large",
+    "href": "realisations/realisation-2.html#tableau-format-large",
+    "title": "Réalisation 2 provenant du projet",
+    "section": "Tableau (format large)",
+    "text": "Tableau (format large)\nLe tableau 1 montre les taux d’incidence de cancer (/100 000) de 2015 à 2024.\n\n\nAfficher le code\nkable(taux_cancer, digits = 1)\n\n\n\n\nTableau 1: Taux de cancer par année et par région\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nannee\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n\n\n\n\n2015\n105,07\n127,56\n125,15\n134,30\n125,22\n109,56\n149,14\n142,63\n180,92\nNA\n149,66\n116,64\n117,71\n161,25\n151,27\n117,60\n\n\n2016\n120,13\n124,10\n126,79\n125,90\n126,14\n114,52\n137,06\n145,14\n149,61\n205,60\n147,63\n122,06\n126,00\n156,86\n139,79\n124,45\n\n\n2017\n132,91\n127,59\n122,92\n125,41\n132,65\n118,54\n130,79\n139,60\n163,58\n113,92\n164,11\n118,47\n130,27\n150,98\n156,99\n134,29\n\n\n2018\n112,60\n134,51\n118,41\n131,76\n128,51\n112,43\n145,16\n145,76\n165,42\n106,01\n156,71\n119,87\n119,22\n151,79\n154,48\n122,28\n\n\n2019\n122,99\n149,91\n117,98\n137,94\n122,45\n112,84\n141,14\n134,10\n166,88\n171,55\n158,95\n111,81\n125,77\n152,93\n162,29\n126,69\n\n\n2020\n117,38\n135,86\n108,56\n131,69\n119,49\n98,77\n127,00\n126,84\n135,76\n143,73\n132,14\n103,04\n109,46\n138,89\n139,22\n121,31\n\n\n2021\n113,49\n116,70\n115,60\n127,79\n127,76\n107,72\n133,41\n143,32\n159,97\n106,02\n158,35\n110,78\n113,25\n146,48\n131,89\n115,50\n\n\n2022\n113,84\n121,15\n109,73\n138,28\n124,17\n104,81\n147,50\n140,15\n144,25\n127,58\n134,54\n105,63\n115,50\n141,35\n146,94\n122,83\n\n\n2023\n125,55\n133,33\n108,70\n137,96\n118,99\n102,57\n135,57\n139,98\n161,57\n157,39\n159,10\n101,77\n119,51\n144,23\n144,59\n118,38\n\n\n2024\n112,37\n136,19\n102,84\n137,14\n117,22\n98,92\n129,90\n133,86\n146,44\n117,76\n144,58\n106,84\n106,76\n138,14\n140,27\n115,36\n\n\n\n\n\n\n\n\n\n\nAfficher le code\n# Écriture du csv\nwrite_csv(taux_cancer, \"data/donnees_completes.csv\")\n\n# Mise en forme longue\ntaux_long &lt;- taux_cancer %&gt;%\n  pivot_longer(\n    cols = as.character(seq(1, 16)), \n    names_to = \"region\", \n    values_to = \"taux\"\n  ) %&gt;% \n  mutate(\n    taux = as.numeric(gsub(\",\", \".\", taux))\n  ) %&gt;%\n  subset(region %in% c(\"1\", \"2\", \"3\", \"4\", \"5\"))"
+  },
+  {
+    "objectID": "realisations/realisation-2.html#tableau-format-long",
+    "href": "realisations/realisation-2.html#tableau-format-long",
+    "title": "Réalisation 2 provenant du projet",
+    "section": "Tableau (format long)",
+    "text": "Tableau (format long)\nLe tableau 2 montre les taux d’incidence de cancer (/100 000) sous format long pour les régions 1 à 5.\n\n\nAfficher le code\nkable(taux_long, digits = 1)\n\n\n\n\nTableau 2: Taux de cancer du poumon sous format long pour 5 régions\n\n\n\n\n\n\nannee\nregion\ntaux\n\n\n\n\n2015\n1\n105.1\n\n\n2015\n2\n127.6\n\n\n2015\n3\n125.2\n\n\n2015\n4\n134.3\n\n\n2015\n5\n125.2\n\n\n2016\n1\n120.1\n\n\n2016\n2\n124.1\n\n\n2016\n3\n126.8\n\n\n2016\n4\n125.9\n\n\n2016\n5\n126.1\n\n\n2017\n1\n132.9\n\n\n2017\n2\n127.6\n\n\n2017\n3\n122.9\n\n\n2017\n4\n125.4\n\n\n2017\n5\n132.7\n\n\n2018\n1\n112.6\n\n\n2018\n2\n134.5\n\n\n2018\n3\n118.4\n\n\n2018\n4\n131.8\n\n\n2018\n5\n128.5\n\n\n2019\n1\n123.0\n\n\n2019\n2\n149.9\n\n\n2019\n3\n118.0\n\n\n2019\n4\n137.9\n\n\n2019\n5\n122.4\n\n\n2020\n1\n117.4\n\n\n2020\n2\n135.9\n\n\n2020\n3\n108.6\n\n\n2020\n4\n131.7\n\n\n2020\n5\n119.5\n\n\n2021\n1\n113.5\n\n\n2021\n2\n116.7\n\n\n2021\n3\n115.6\n\n\n2021\n4\n127.8\n\n\n2021\n5\n127.8\n\n\n2022\n1\n113.8\n\n\n2022\n2\n121.2\n\n\n2022\n3\n109.7\n\n\n2022\n4\n138.3\n\n\n2022\n5\n124.2\n\n\n2023\n1\n125.6\n\n\n2023\n2\n133.3\n\n\n2023\n3\n108.7\n\n\n2023\n4\n138.0\n\n\n2023\n5\n119.0\n\n\n2024\n1\n112.4\n\n\n2024\n2\n136.2\n\n\n2024\n3\n102.8\n\n\n2024\n4\n137.1\n\n\n2024\n5\n117.2\n\n\n\n\n\n\n\n\n\n\nAfficher le code\n# Contrôles\nstopifnot(taux_long$taux &lt;= 100000 | is.na(taux_long$taux))\nstopifnot(nrow(distinct(taux_long, annee, region)) == nrow(taux_long))\n\n\n# Visualisation"
+  },
+  {
+    "objectID": "realisations/realisation-2.html#figure",
+    "href": "realisations/realisation-2.html#figure",
+    "title": "Réalisation 2 provenant du projet",
+    "section": "Figure",
+    "text": "Figure\nLa figure 1 représente les effectifs du tableau 2 pour 5 régions administratives\n\n\nAfficher le code\ntaux_long %&gt;% \n  mutate(\n    region = factor(\n      region,\n      levels = c(\"1\", \"2\", \"3\", \"4\", \"5\"),\n      labels = c(\"Bas-Saint-Laurent\", \"Saguenay-Lac-Saint-Jean\", \n                 \"Capitale-Nationale\", \"Mauricie et Centre-du-Québec\", \"Estrie\")\n    )\n  ) %&gt;%\n  ggplot( aes(x=annee, y=taux, group=region, color=region)) +\n  geom_line() + \n  scale_x_discrete(limits = seq(2015, 2024, 2)) +\n  labs(\n    title = \"Taux d'incidence du cancer du poumon de 2015 à 2024\",\n    x = \"Année\", \n    y = \"Taux d'incidence (/100 000)\",\n    colour = \"Région\"\n  )\n\n\n\n\n\n\n\n\nFigure 1: Taux d’incidence de cancer (/100 000)"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Julianne Fréchette",
+    "section": "",
+    "text": "Je suis une étudiante en 3e année au baccalauréat en statistique et science des données, dans la concentration science des données."
+  },
+  {
+    "objectID": "index.html#présentation",
+    "href": "index.html#présentation",
+    "title": "Julianne Fréchette",
+    "section": "",
+    "text": "Je suis une étudiante en 3e année au baccalauréat en statistique et science des données, dans la concentration science des données."
+  },
+  {
+    "objectID": "index.html#intérêts",
+    "href": "index.html#intérêts",
+    "title": "Julianne Fréchette",
+    "section": "Intérêts",
+    "text": "Intérêts\n\nStatistique\nScience des données\nProgrammation R et Python\nVisualisation"
+  },
+  {
+    "objectID": "index.html#liens",
+    "href": "index.html#liens",
+    "title": "Julianne Fréchette",
+    "section": "Liens",
+    "text": "Liens\n\nGitHub: https://github.com/Julianne6\nSite publié: https://identifiant.github.io/nom-du-depot/"
+  },
+  {
+    "objectID": "realisations.html",
+    "href": "realisations.html",
+    "title": "Réalisations",
+    "section": "",
+    "text": "Contexte: Le but de cette trace était de décrire la répartition des profondeurs des séismes dans le jeu quakes fourni avec R, utilisé pendant la semaine 7.\nProduction: un rapport avec tableau, graphique et code.\nOutils: R, readr, dplyr, ggplot2 et Quarto.\nValidation ou vérification: La somme des effectifs du tableau correspond au nombre de lignes. La somme des 2 proportions est 1.\nCe que cette réalisation démontre: la production d’un rapport reproductible, incluant l’importation des données, le calcul de proportion et la visualisation d’un graphique.\nLimite ou amélioration possible: Il n’est pas possible de calculer un nombre annuel de séismes avec ce fichier, car il ne contient pas les dates des séismes.\nTrace source dans le portfolio: La trace utilisée correspond à l’exercice 3 de la semaine 7. Puisque le portfolio est privé, voici une reproduction de la trace originale."
+  },
+  {
+    "objectID": "realisations.html#réalisation-1-trace-du-portfolio",
+    "href": "realisations.html#réalisation-1-trace-du-portfolio",
+    "title": "Réalisations",
+    "section": "",
+    "text": "Contexte: Le but de cette trace était de décrire la répartition des profondeurs des séismes dans le jeu quakes fourni avec R, utilisé pendant la semaine 7.\nProduction: un rapport avec tableau, graphique et code.\nOutils: R, readr, dplyr, ggplot2 et Quarto.\nValidation ou vérification: La somme des effectifs du tableau correspond au nombre de lignes. La somme des 2 proportions est 1.\nCe que cette réalisation démontre: la production d’un rapport reproductible, incluant l’importation des données, le calcul de proportion et la visualisation d’un graphique.\nLimite ou amélioration possible: Il n’est pas possible de calculer un nombre annuel de séismes avec ce fichier, car il ne contient pas les dates des séismes.\nTrace source dans le portfolio: La trace utilisée correspond à l’exercice 3 de la semaine 7. Puisque le portfolio est privé, voici une reproduction de la trace originale."
+  },
+  {
+    "objectID": "realisations.html#réalisation-2-projet-ou-module-avancé",
+    "href": "realisations.html#réalisation-2-projet-ou-module-avancé",
+    "title": "Réalisations",
+    "section": "Réalisation 2: projet ou module avancé",
+    "text": "Réalisation 2: projet ou module avancé\nContexte: L’objectif de cette partie du projet était de voir l’évolution temporelle des taux d’incidence du cancer du poumon dans les régions administratives du Québec.\nProduction: un rapport avec tableau, graphique et code\nOutils: R, readr, dplyr, ggplot2 et Quarto.\nValidation ou vérification: Les taux d’incidence ne dépassent pas 100 000. Chaque paire (année, région) a un taux unique.\nCe que cette réalisation démontre: un script R incluant l’importation des données, une boucle, une jointure, un changement de mise en forme et la visualisation d’un graphique.\nLimite ou amélioration possible: Les données incluent uniquement les régions administratives du Québec. Il serait pertinent d’ajouter les autres provinces du Canada et de stratifier par groupe d’âge.\nTrace source dans le projet ou le module: Puisque le dépôt du projet est privé, voici une reproduction de la trace originale."
+  },
+  {
+    "objectID": "realisations.html#justification-technique-courte",
+    "href": "realisations.html#justification-technique-courte",
+    "title": "Réalisations",
+    "section": "Justification technique courte",
+    "text": "Justification technique courte\nOn visualise seulement 5 régions administratives, car les 17 régions administratives rendent le graphique chargé et difficile à interpréter."
+  },
+  {
+    "objectID": "parcours.html",
+    "href": "parcours.html",
+    "title": "Parcours et compétences",
+    "section": "",
+    "text": "J’ai complété 2 ans au baccalauréat en bio-informatique, puis j’ai décidé de changer de programme et faire un baccalauréat en statistique et science des données. J’ai eu l’opportunité de réaliser 2 stages en analyse de données lorsque j’étais en bio-informatique, et j’ai réalisé un stage en statistique à l’été 2026."
+  },
+  {
+    "objectID": "parcours.html#parcours",
+    "href": "parcours.html#parcours",
+    "title": "Parcours et compétences",
+    "section": "",
+    "text": "J’ai complété 2 ans au baccalauréat en bio-informatique, puis j’ai décidé de changer de programme et faire un baccalauréat en statistique et science des données. J’ai eu l’opportunité de réaliser 2 stages en analyse de données lorsque j’étais en bio-informatique, et j’ai réalisé un stage en statistique à l’été 2026."
+  },
+  {
+    "objectID": "parcours.html#compétences",
+    "href": "parcours.html#compétences",
+    "title": "Parcours et compétences",
+    "section": "Compétences",
+    "text": "Compétences\n\nR et tidyverse\nPython\nSQL\nC++\nQuarto\nGit et GitHub\nVisualisation de données"
+  },
+  {
+    "objectID": "parcours.html#expériences-ou-formations",
+    "href": "parcours.html#expériences-ou-formations",
+    "title": "Parcours et compétences",
+    "section": "Expériences ou formations",
+    "text": "Expériences ou formations\n\nAuxiliaire de recherche à l’IBIS (2023-2024)\nAuxiliaire de recherche au Centre de recherche du CHU de Québec (été 2024)\nAuxiliaire de recherche à CERVO (été 2025)\nAuxiliaire de recherche à l’Université Laval (été 2026)"
   },
   {
     "objectID": "realisations/realisation-1.html",
     "href": "realisations/realisation-1.html",
     "title": "Mon rapport sur la profondeur des séismes",
     "section": "",
-    "text": "La question est: comment les événements de ce tableau se répartissent-ils entre les profondeurs inférieures à 300 km et les profondeurs de 300 km ou plus?\nL’unité d’observation est les séismes. La variable est la profondeur en km.\nLe fichier importé contient rnrow(seismes)événements. Il est fourni avec le laboratoire; sa provenance et son dictionnaire sont dansdonnees/SOURCES.md`."
+    "text": "La question est: comment les événements de ce tableau se répartissent-ils entre les profondeurs inférieures à 300 km et les profondeurs de 300 km ou plus?\nL’unité d’observation est les séismes. La variable est la profondeur en km.\nLe fichier importé contient 1000 événements. Il est fourni avec le laboratoire; sa provenance et son dictionnaire sont dans donnees/SOURCES.md."
   },
   {
     "objectID": "realisations/realisation-1.html#question-et-données",
     "href": "realisations/realisation-1.html#question-et-données",
     "title": "Mon rapport sur la profondeur des séismes",
     "section": "",
-    "text": "La question est: comment les événements de ce tableau se répartissent-ils entre les profondeurs inférieures à 300 km et les profondeurs de 300 km ou plus?\nL’unité d’observation est les séismes. La variable est la profondeur en km.\nLe fichier importé contient rnrow(seismes)événements. Il est fourni avec le laboratoire; sa provenance et son dictionnaire sont dansdonnees/SOURCES.md`."
+    "text": "La question est: comment les événements de ce tableau se répartissent-ils entre les profondeurs inférieures à 300 km et les profondeurs de 300 km ou plus?\nL’unité d’observation est les séismes. La variable est la profondeur en km.\nLe fichier importé contient 1000 événements. Il est fourni avec le laboratoire; sa provenance et son dictionnaire sont dans donnees/SOURCES.md."
   },
   {
     "objectID": "realisations/realisation-1.html#préparation",
@@ -53,91 +165,7 @@
     "href": "realisations/realisation-1.html#reproduction",
     "title": "Mon rapport sur la profondeur des séismes",
     "section": "Reproduction",
-    "text": "Reproduction\nPour refaire ce rapport, conserver le fichier .qmd et le dossier donnees/ ensemble. Les bibliothèques utilisées sont readr, dplyr, ggplot2 et knitr.\nquarto render rapport.qmd\nÀ compléter : indiquer la vérification réalisée depuis une session propre et depuis une copie du dossier. Pour vérifier que le rapport fonctionne, la session R a été redémarrée et le rendu a été refait. De plus, ce document et les données ont été copiées dans un autre répertoire, et le rendu a été refait. Dans les deux cas, le rapport HTML contenait tous les éléments."
-  },
-  {
-    "objectID": "parcours.html",
-    "href": "parcours.html",
-    "title": "Parcours et compétences",
-    "section": "",
-    "text": "J’ai complété 2 ans au baccalauréat en bio-informatique, puis j’ai décidé de changer de programme et faire un baccalauréat en statistique et science des données. J’ai eu l’opportunité de réaliser 2 stages en analyse de données lorsque j’étais en bio-informatique, et j’ai réalisé un stage en statistique à l’été 2026."
-  },
-  {
-    "objectID": "parcours.html#parcours",
-    "href": "parcours.html#parcours",
-    "title": "Parcours et compétences",
-    "section": "",
-    "text": "J’ai complété 2 ans au baccalauréat en bio-informatique, puis j’ai décidé de changer de programme et faire un baccalauréat en statistique et science des données. J’ai eu l’opportunité de réaliser 2 stages en analyse de données lorsque j’étais en bio-informatique, et j’ai réalisé un stage en statistique à l’été 2026."
-  },
-  {
-    "objectID": "parcours.html#compétences",
-    "href": "parcours.html#compétences",
-    "title": "Parcours et compétences",
-    "section": "Compétences",
-    "text": "Compétences\n\nR et tidyverse\nPython\nSQL\nC++\nQuarto\nGit et GitHub\nVisualisation de données"
-  },
-  {
-    "objectID": "parcours.html#expériences-ou-formations",
-    "href": "parcours.html#expériences-ou-formations",
-    "title": "Parcours et compétences",
-    "section": "Expériences ou formations",
-    "text": "Expériences ou formations\n\nAuxiliaire de recherche à l’IBIS (2023-2024)\nAuxiliaire de recherche au Centre de recherche du CHU de Québec (été 2024)\nAuxiliaire de recherche à CERVO (été 2025)\nAuxiliaire de recherche à l’Université Laval (été 2026)"
-  },
-  {
-    "objectID": "realisations.html",
-    "href": "realisations.html",
-    "title": "Réalisations",
-    "section": "",
-    "text": "Contexte: décrire la répartition des profondeurs des séismes dans le jeu quakes fourni avec R, utilisé pendant la semaine 7.\nProduction: un rapport avec tableau, graphique et code.\nOutils: R, readr, dplyr, ggplot2 et Quarto.\nValidation ou vérification: La somme des effectifs du tableau correspond au nombre de lignes. La somme des 2 proportions est 1.\nCe que cette réalisation démontre: la production d’un rapport reproductible, incluant l’importation des données, le calcul de proportion et la visualisation d’un graphique.\nLimite ou amélioration possible: Il n’est pas possible de calculer un nombre annuel de séismes avec ce fichier, car il ne contient pas les dates des séismes.\nTrace source dans le portfolio: La trace utilisée correspond à l’exercice 3 de la semaine 7. Puisque le portfolio est privé, voici une reproduction de la trace originale."
-  },
-  {
-    "objectID": "realisations.html#réalisation-1-trace-du-portfolio",
-    "href": "realisations.html#réalisation-1-trace-du-portfolio",
-    "title": "Réalisations",
-    "section": "",
-    "text": "Contexte: décrire la répartition des profondeurs des séismes dans le jeu quakes fourni avec R, utilisé pendant la semaine 7.\nProduction: un rapport avec tableau, graphique et code.\nOutils: R, readr, dplyr, ggplot2 et Quarto.\nValidation ou vérification: La somme des effectifs du tableau correspond au nombre de lignes. La somme des 2 proportions est 1.\nCe que cette réalisation démontre: la production d’un rapport reproductible, incluant l’importation des données, le calcul de proportion et la visualisation d’un graphique.\nLimite ou amélioration possible: Il n’est pas possible de calculer un nombre annuel de séismes avec ce fichier, car il ne contient pas les dates des séismes.\nTrace source dans le portfolio: La trace utilisée correspond à l’exercice 3 de la semaine 7. Puisque le portfolio est privé, voici une reproduction de la trace originale."
-  },
-  {
-    "objectID": "realisations.html#réalisation-2-projet-ou-module-avancé",
-    "href": "realisations.html#réalisation-2-projet-ou-module-avancé",
-    "title": "Réalisations",
-    "section": "Réalisation 2: projet ou module avancé",
-    "text": "Réalisation 2: projet ou module avancé\nContexte:\nProduction:\nOutils:\nValidation ou vérification:\nCe que cette réalisation démontre:\nLimite ou amélioration possible:\nTrace source dans le projet ou le module:\nLien public, seulement si autorisé:"
-  },
-  {
-    "objectID": "realisations.html#justification-technique-courte",
-    "href": "realisations.html#justification-technique-courte",
-    "title": "Réalisations",
-    "section": "Justification technique courte",
-    "text": "Justification technique courte\nExpliquer un choix technique important: structure du dépôt, validation, dépendances, rendu Quarto, visualisation, fonction, test ou publication GitHub Pages."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Julianne Fréchette",
-    "section": "",
-    "text": "Je suis une étudiante en 3e année au baccalauréat en statistique et science des données, dans la concentration science des données."
-  },
-  {
-    "objectID": "index.html#présentation",
-    "href": "index.html#présentation",
-    "title": "Julianne Fréchette",
-    "section": "",
-    "text": "Je suis une étudiante en 3e année au baccalauréat en statistique et science des données, dans la concentration science des données."
-  },
-  {
-    "objectID": "index.html#intérêts",
-    "href": "index.html#intérêts",
-    "title": "Julianne Fréchette",
-    "section": "Intérêts",
-    "text": "Intérêts\n\nStatistique\nScience des données\nProgrammation R et Python\nVisualisation"
-  },
-  {
-    "objectID": "index.html#liens",
-    "href": "index.html#liens",
-    "title": "Julianne Fréchette",
-    "section": "Liens",
-    "text": "Liens\n\nGitHub: https://github.com/Julianne6\nSite publié: https://identifiant.github.io/nom-du-depot/"
+    "text": "Reproduction\nPour refaire ce rapport, conserver le fichier .qmd et le dossier donnees/ ensemble. Les bibliothèques utilisées sont readr, dplyr, ggplot2 et knitr.\nquarto render realisation-1.qmd\nPour vérifier que le rapport fonctionne, la session R a été redémarrée et le rendu a été refait. De plus, ce document et les données ont été copiées dans un autre répertoire, et le rendu a été refait. Dans les deux cas, le rapport HTML contenait tous les éléments."
   },
   {
     "objectID": "realisations/data/SOURCES.html",

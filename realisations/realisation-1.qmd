@@ -65,7 +65,7 @@ La question est: comment les événements de ce tableau se répartissent-ils ent
 L'unité d'observation est les séismes. La variable est la profondeur en km. 
 
 
-Le fichier importé contient `r `nrow(seismes)` événements. Il est fourni avec le laboratoire; sa provenance et son dictionnaire sont dans `donnees/SOURCES.md`.
+Le fichier importé contient `r nrow(seismes)` événements. Il est fourni avec le laboratoire; sa provenance et son dictionnaire sont dans `donnees/SOURCES.md`.
 
 ## Préparation
 
@@ -113,10 +113,8 @@ Les séismes avec une profondeur de moins de 300 km représentent `r repartition
 Pour refaire ce rapport, conserver le fichier `.qmd` et le dossier `donnees/` ensemble. Les bibliothèques utilisées sont `readr`, `dplyr`, `ggplot2` et `knitr`.
 
 ```text
-quarto render rapport.qmd
+quarto render realisation-1.qmd
 ```
 
-À compléter : indiquer la vérification réalisée depuis une session propre et depuis une copie du dossier.
-Pour vérifier que le rapport fonctionne, la session R a été redémarrée et le 
-rendu a été refait. De plus, ce document et les données ont été copiées dans un autre répertoire, et le rendu a été refait. Dans les deux cas, le rapport HTML 
+Pour vérifier que le rapport fonctionne, la session R a été redémarrée et le rendu a été refait. De plus, ce document et les données ont été copiées dans un autre répertoire, et le rendu a été refait. Dans les deux cas, le rapport HTML 
 contenait tous les éléments. 
