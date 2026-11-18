@@ -112,6 +112,7 @@ Les séismes avec une profondeur de moins de 300 km représentent `r repartition
 
 Pour refaire ce rapport, conserver le fichier `.qmd` et le dossier `donnees/` ensemble. Les bibliothèques utilisées sont `readr`, `dplyr`, `ggplot2` et `knitr`.
 
+Il faut utiliser la commande suivante pour visualiser le rapport: 
 ```text
 quarto render realisation-1.qmd
 ```

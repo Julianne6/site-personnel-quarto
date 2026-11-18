@@ -27,24 +27,36 @@ library(dplyr)
 library(tidyr)
 library(ggplot2)
 library(knitr)
-
+library(purrr)
 
 # Importation des données de cancer
+localisation_cancer_combine <- "data/donnees_cancer.csv"
 filenames <- list.files("data", include.dirs = FALSE, recursive = TRUE, pattern = "region.*.csv")
-data_list <- lapply(file.path("data", filenames), read.csv)
+data_list <- lapply(file.path("data", filenames), FUN = read_csv, locale = locale(decimal_mark = ","))
 
 # Jointure des données
 taux_cancer <- data.frame(
-  annee = seq(2015, 2024)
+  annee = seq(2015, 2025)
 )
-for (csv in data_list){
-  taux_cancer <- left_join(
-    taux_cancer, 
-    select(csv, -3) , 
-    by = c("annee" = "Année"))
-}
+taux_cancer <- reduce(
+  data_list,
+  function(acc, csv) {
+    colnames(csv) <- c("annee", "taux_reel", "taux_projete")
+    csv <- csv |>
+      mutate(
+        taux_utile = ifelse(annee == 2025, taux_projete, taux_reel)
+      )
+    left_join(
+      acc,
+      select(csv, annee, taux_utile), 
+      by = "annee"
+    )
+  },
+  .init = taux_cancer
+)
 
 colnames(taux_cancer) <- c("annee", seq(1,16))
+
 
 ```
 
@@ -62,20 +74,16 @@ kable(taux_cancer, digits = 1)
 
 
 ```{r}
-# Écriture du csv
-write_csv(taux_cancer, "data/donnees_completes.csv")
-
 # Mise en forme longue
-taux_long <- taux_cancer %>%
+taux_long <- taux_cancer |>
   pivot_longer(
-    cols = as.character(seq(1, 16)), 
-    names_to = "region", 
+    cols = as.character(seq(1, 16)),
+    names_to = "region",
     values_to = "taux"
-  ) %>% 
-  mutate(
-    taux = as.numeric(gsub(",", ".", taux))
-  ) %>%
-  subset(region %in% c("1", "2", "3", "4", "5")) 
+  ) 
+
+# Écriture du csv
+write_csv(taux_long, localisation_cancer_combine)
 
 ```
 
@@ -86,8 +94,10 @@ Le @tbl-long montre les taux d'incidence de cancer (/100 000) sous format long p
 ```{r}
 #| label: tbl-long
 #| tbl-cap: "Taux de cancer du poumon sous format long pour 5 régions"
+taux_long_reduit <- taux_long %>%
+  subset(region %in% c("1", "2", "3", "4", "5")) 
 
-kable(taux_long, digits = 1)
+kable(taux_long_reduit, digits = 1)
 ```
 
 
@@ -95,9 +105,6 @@ kable(taux_long, digits = 1)
 # Contrôles
 stopifnot(taux_long$taux <= 100000 | is.na(taux_long$taux))
 stopifnot(nrow(distinct(taux_long, annee, region)) == nrow(taux_long))
-
-
-# Visualisation 
 
 ```
 
@@ -112,7 +119,7 @@ La @fig-cancer représente les effectifs du @tbl-long pour 5 régions administra
 #| fig-width: 8
 #| fig-height: 4.5
 
-taux_long %>% 
+taux_long_reduit %>% 
   mutate(
     region = factor(
       region,

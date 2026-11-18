@@ -17,4 +17,4 @@ Je suis une étudiante en 3e année au baccalauréat en statistique et science d
 ## Liens
 
 - GitHub: <https://github.com/Julianne6>
-- Site publié: <https://identifiant.github.io/nom-du-depot/>
+- Site publié: <https://julianne6.github.io/site-personnel-quarto/>
